@@ -27,6 +27,8 @@
             ocamlPackages.findlib
             ocamlPackages.utop
             ocamlPackages.odoc
+            ocamlPackages.lsp
+            ocamlPackages.ocaml-lsp
           ];
         };
       });
