@@ -23,7 +23,6 @@
             ocamlPackages.utop
             ocamlPackages.odoc
             ocamlPackages.ocaml-lsp
-            ocamlPackages.menhir
           ];
         };
       });

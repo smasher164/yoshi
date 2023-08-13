@@ -1,1 +1,3 @@
-let () = print_endline "Hello, World!"
+open Yoshi
+
+let _ = print "foo"
