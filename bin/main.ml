@@ -1,3 +1,3 @@
 open Yoshi
 
-let _ = print "foo"
+let _ = Anf.Bool true
