@@ -1,30 +1,34 @@
-module rec Ty : sig
+module Ty = struct
   type quantifier = string
+
   type var = Unbound of quantifier | Link of t
+
   and t =
     | Num
     | Bool
     | Lam of t * t
     | Forall of quantifier * t
     | Var of var ref
-end = Ty
-and Anf : sig
+end
+
+module Anf = struct
   type id = string
-  type imm =
-    | Num of int
-    | Bool of bool
-    | Id of id * Ty.t
-  type t' =
-    | Jump of id * imm
-    | Join of id * id * t' * t'
-    | Return of imm
-    | Perform of id * id * imm
-    | With of id * id * t' * t'
-    | Resume of imm
-    | If of imm * t' * t'
-    | Imm of imm
-    | Let of id * t' * t'
-    | Lam of id * id * t' * t'
-    | App of id * id * imm * t'
+  type atom = Num of int | Bool of bool | Id of id * Ty.t
+
   type t = t' * Ty.t
-end = Anf
+
+  and t' =
+    | Jump of id * atom
+    | Join of id * id * t * t
+    | Return of atom
+    | Perform of id * id * atom
+    | With of id * id * t * t
+    | Resume of atom
+    | If of atom * t * t
+    | Let of id * t * t
+    | Lam of id * id * t * t
+    | Closure of id * id list * id * t * t
+    | Tuple of id * (id option * atom) list * t
+    | Proj of id * id * id * t
+    | App of id * id * atom * t
+end
