@@ -1,7 +1,9 @@
 module Ty = struct
   type quantifier = string
 
-  type var = Unbound of quantifier | Link of t
+  type var =
+    | Unbound of quantifier
+    | Link of t
 
   and t =
     | Num
@@ -13,7 +15,11 @@ end
 
 module Anf = struct
   type id = string
-  type atom = Num of int | Bool of bool | Id of id * Ty.t
+
+  type atom =
+    | Num of int
+    | Bool of bool
+    | Id of id * Ty.t
 
   type t = t' * Ty.t
 
