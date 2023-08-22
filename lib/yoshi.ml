@@ -10,6 +10,7 @@ module Ty = struct
     | Bool
     | Lam of t * t
     | Forall of quantifier * t
+    | Tuple of (string option * t) list
     | Var of var ref
 end
 
